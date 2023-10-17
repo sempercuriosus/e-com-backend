@@ -1,0 +1,10 @@
+### SemperCuriosus' .gitignore 
+# Template - Mac 
+
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+node_modules
+.env
