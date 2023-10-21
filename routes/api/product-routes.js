@@ -35,16 +35,24 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Category and Tag data
   // console.info('getting id: ' + req.params.id);
 
-  // on second thought this is not needed, if there is no param set then they will use the route above 
-  // if (!req.params.id) {
-  //   res_message = 'Specify a Product ID to search by.';
-  //   res_status = 404;
-  //   // res.status(404).json({ response_message: res_message });
-  // }
   let res_message = '';
   let res_status = 200;
 
-  Product.findByPk(req.params.id)
+  Product.findByPk(req.params.id, {
+    include: [
+      {
+        // getting the category data using the FK relationship from product.category_id to category.id
+        model: Category,
+        attributes: [ 'category_name' ],
+      },
+      {
+        // getting the tag data using the relationship from product_tag.product_id to product.id
+        model: Tag,
+        through: ProductTag,
+        attributes: [ 'id', 'tag_name' ]
+      },
+    ],
+  })
     .then((product) => {
 
       if (!product) {
@@ -56,8 +64,6 @@ router.get('/:id', (req, res) => {
       // if the product was found return the data
       return res.status(200).json(product);
     });
-
-
 });
 
 // create new product
@@ -139,6 +145,37 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+
+  let res_message = '';
+  let res_status = 200;
+
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((destroy_res) => {
+
+      if (destroy_res === 1) {
+        res_message = 'Record Deleted with the id: ' + req.params.id;
+      }
+      else {
+        res_message = 'NO Record has been Deleted with the id: ' + req.params.id + '; check that the id exists.';
+      }
+
+      return res.status(res_status).json({
+        response_message: res_message
+      });
+
+    })
+    .catch((error) => {
+      res_message = 'There was an error in deleting the record requested'
+        + error;
+
+      return res.status(res_status).json({
+        response_message: res_message
+      });
+    });
 });
 
 module.exports = router;
