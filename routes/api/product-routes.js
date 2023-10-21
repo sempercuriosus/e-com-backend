@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { createTracing } = require('trace_events');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
@@ -10,7 +9,21 @@ router.get('/', (req, res) => {
   // be sure to include its associated Category and Tag data
   // console.info('return all products');
 
-  Product.findAll()
+  Product.findAll({
+    include: [
+      {
+        // getting the category data using the FK relationship from product.category_id to category.id
+        model: Category,
+        attributes: [ 'category_name' ],
+      },
+      {
+        // getting the tag data using the relationship from product_tag.product_id to product.id
+        model: Tag,
+        through: ProductTag,
+        attributes: [ 'id', 'tag_name' ]
+      },
+    ],
+  })
     .then((products) => {
       res.status(200).json(products);
     });
