@@ -7,9 +7,9 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
-  // console.info('return all products');
 
   Product.findAll({
+    // adding additional data in the response to... 
     include: [
       {
         // getting the category data using the FK relationship from product.category_id to category.id
@@ -33,12 +33,12 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  // console.info('getting id: ' + req.params.id);
 
   let res_message = '';
   let res_status = 200;
 
   Product.findByPk(req.params.id, {
+    // adding additional data in the response to... 
     include: [
       {
         // getting the category data using the FK relationship from product.category_id to category.id
@@ -55,13 +55,15 @@ router.get('/:id', (req, res) => {
   })
     .then((product) => {
 
+      // if the product WAS NOT found then return this message.
       if (!product) {
         res_message = 'The Product ID you searched for was not found.';
         res_status = 404;
-        // if the product was not found then return this message.
+
         return res.status(res_status).json({ response_message: res_message });
       }
-      // if the product was found return the data
+
+      // if the product WAS found return the data
       return res.status(200).json(product);
     });
 });
@@ -156,10 +158,13 @@ router.delete('/:id', (req, res) => {
   })
     .then((destroy_res) => {
 
+      // If there was a successfull return on the delete then say...
       if (destroy_res === 1) {
         res_message = 'Record Deleted with the id: ' + req.params.id;
       }
+      // If nothing was deleted then say...
       else {
+        res_status = 404;
         res_message = 'NO Record has been Deleted with the id: ' + req.params.id + '; check that the id exists.';
       }
 
@@ -169,6 +174,7 @@ router.delete('/:id', (req, res) => {
 
     })
     .catch((error) => {
+      res_status = 500;
       res_message = 'There was an error in deleting the record requested'
         + error;
 
