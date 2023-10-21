@@ -21,9 +21,9 @@ Product.init(
       , allowNull: false
       , defaultValue: ""
       // what I am thinking here, this is a name, so there should not be special chars input; it is a product name after all. 
-      , validate: {
-        isAlphanumeric: true
-      }
+      // , validate: {
+      //   isAlphanumeric: true
+      // }
 
     },
     price: {

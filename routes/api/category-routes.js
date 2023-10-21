@@ -74,14 +74,35 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
-  console.log(req.method, 'category');
-  res.send(418);
+  // console.log(req.method, 'category');
+  // res.send(418);
+
+  /*
+  sample request
+  {
+    "category_name": ""
+  }
+  */
+  // add a new category
+  Category.create(req.body)
+    .then((category) => {
+
+      console.log(req.body);
+      res.status(200).json(category);
+    })
+    .then((categoryList) => res.status(200).json(categoryList))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   // console.log(req.method, 'category', req.body);
   // res.send(JSON.stringify(req.body));
+
 });
 
 router.delete('/:id', (req, res) => {

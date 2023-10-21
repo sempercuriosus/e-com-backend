@@ -17,9 +17,9 @@ Category.init(
       type: DataTypes.STRING
       , allowNull: false
       , defaultValue: ""
-      , validate: {
-        isAlphanumeric: true
-      }
+      // , validate: {
+      //   isAlphanumeric: true
+      // }
     }
   },
   {
