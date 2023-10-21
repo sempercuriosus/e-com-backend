@@ -8,10 +8,11 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
-  console.info('return all products');
+  // console.info('return all products');
+
   Product.findAll()
     .then((products) => {
-      res.json(products);
+      res.status(200).json(products);
     });
 });
 
@@ -19,7 +20,31 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  console.info('getting id: ' + req.params.id);
+  // console.info('getting id: ' + req.params.id);
+
+  // on second thought this is not needed, if there is no param set then they will use the route above 
+  // if (!req.params.id) {
+  //   res_message = 'Specify a Product ID to search by.';
+  //   res_status = 404;
+  //   // res.status(404).json({ response_message: res_message });
+  // }
+  let res_message = '';
+  let res_status = 200;
+
+  Product.findByPk(req.params.id)
+    .then((product) => {
+
+      if (!product) {
+        res_message = 'The Product ID you searched for was not found.';
+        res_status = 404;
+        // if the product was not found then return this message.
+        return res.status(res_status).json({ response_message: res_message });
+      }
+      // if the product was found return the data
+      return res.status(200).json(product);
+    });
+
+
 });
 
 // create new product
