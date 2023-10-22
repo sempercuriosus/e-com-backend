@@ -168,7 +168,7 @@ router.delete('/:id', (req, res) => {
         res_message = 'NO Record has been Deleted with the id: ' + req.params.id + '; check that the id exists.';
       }
 
-      return res.status(res_status).json({
+      res.status(res_status).json({
         response_message: res_message
       });
 
@@ -178,7 +178,7 @@ router.delete('/:id', (req, res) => {
       res_message = 'There was an error in deleting the record requested'
         + error;
 
-      return res.status(res_status).json({
+      res.status(res_status).json({
         response_message: res_message
       });
     });
