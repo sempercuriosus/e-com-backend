@@ -3,7 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
-/* get all tag
+/* get all tags
   * 
   * 
 */
@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
       {
         // uses the FK relationship between product_tag and tag
         model: Product,
+        through: ProductTag,
         attributes: [
           "product_name",
           "price",
