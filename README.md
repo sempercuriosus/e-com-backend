@@ -110,10 +110,10 @@ THEN I am able to successfully create, update, and delete data in my database
     - `http://localhost:PORT/api/products/id`
   - Post
     - JSON Body
-      - `{"product_name": "Fancy Pants","price": 99.00,"stock": 10,"tagIds": [3]}`
+      - `{"product_name": "Fancy Shoes","price": 99.00,"stock": 5,"tagIds": [3],"category_id": 1}`
   - Put
     - JSON Body
-    - `{"product_name": "Fancy Pants","price": 99.00,"stock": 10,"tagIds": [3]}`
+    - `{"product_name":"Fancy Socks"}`
   - Delete
     - `http://localhost:PORT/api/products/id`
 
@@ -154,6 +154,12 @@ THEN I am able to successfully create, update, and delete data in my database
 ## Deployment Location<a id="deployment-location"></a>
 
 - Example Video as this is not deployed
+  - [Create Schema](https://drive.google.com/file/d/1iBEAywpWPooSjsIZrXFmL219f4WEmRqR/view?usp=share_link)
+  - [Run Seed](https://drive.google.com/file/d/1mbeZsmR_VZZEwes_J1CfHkeN_JTbQLQC/view?usp=share_link)
+  - [Start Server](https://drive.google.com/file/d/1j7IYBWyWHdvI0P94iumnhlWGYoBZbzI0/view?usp=share_link)
+  - [Product Routes](https://drive.google.com/file/d/12ICCGTohtunGgmW7Dqtwn37163D7UUPg/view?usp=share_link)
+  - [Category Routes](https://drive.google.com/file/d/1Jzt3hOoMaVRTvvm51kFoH1OEPrtadZo1/view?usp=share_link)
+  - [Tag Routes](https://drive.google.com/file/d/1E7KlA4hxdSWn-_CjNuCWYpQ0kF2mB0d9/view?usp=share_link)
 
 ---
 
