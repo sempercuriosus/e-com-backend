@@ -47,16 +47,11 @@ THEN I am able to successfully create, update, and delete data in my database
   - ProductTag
   - Tag
 - Seed the database with test data
--
-
-- This is designed to
-  - pull data from several tables
-  - insert
-  -
-  -
-  -
-  -
--
+- This will interact with the database to follow CRUD Operations for data to
+  - Create
+  - Return
+  - Update
+  - Delete
 
 ### Built With<a id="#built-with"></a>
 
