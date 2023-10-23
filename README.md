@@ -9,6 +9,7 @@ This is application is to support (mostly simulate) what an E-Commerce applicati
 - [Getting Started](#getting-started)
   - [Prerequisites And Dependencies](#prerequisites-and-dependencies)
   - [Installation](#installation)
+- [Routes](#routes)
 - [Deployment Location](#deployment-location)
 - [Challenges](#challenges)
 - [Acknowledgments](#acknowledgments)
@@ -91,15 +92,67 @@ THEN I am able to successfully create, update, and delete data in my database
 - This is a `CLI` based application and can be run with any terminal
 
 #### Commands
--`start` runs the following `node server.js`
--`watch` runs the following `node --watch server.js`
--`dev` runs the following `npx nodemon server.js `
--`seed` runs the following `node seeds/index.js`
 
-### Routes
+- `start` runs the following `node server.js`
+- `watch` runs the following `node --watch server.js`
+- `dev` runs the following `npx nodemon server.js `
+- `seed` runs the following `node seeds/index.js`
 
+## Routes<a id="#routes"></a>
 
-#### Sample Request
+### Ping
+
+- This is a test route to confirm that the server is up
+- url `http://localhost:PORT/api/ping/`
+- Returns "Therefore I must Pong"
+
+### Products
+
+- url `http://localhost:PORT/api/products`
+- Uses
+  - Get
+    - `http://localhost:PORT/api/products`
+    - `http://localhost:PORT/api/products/id`
+  - Post
+    - JSON Body
+      - `{"product_name": "Fancy Pants","price": 99.00,"stock": 10,"tagIds": [3]}`
+  - Put
+    - JSON Body
+    - `{"product_name": "Fancy Pants","price": 99.00,"stock": 10,"tagIds": [3]}`
+  - Delete
+    - `http://localhost:PORT/api/products/id`
+
+### Category
+
+- url `http://localhost:PORT/api/categories`
+- Uses
+  - Get
+    - `http://localhost:PORT/api/categories`
+    - `http://localhost:PORT/api/categories/id`
+  - Post
+    - JSON Body
+      - `{"category_name": Jeans}`
+  - Put
+    - JSON Body
+    - `{"category_name":"Tall Teeshirts"} `
+  - Delete
+    - `http://localhost:PORT/api/categories/id`
+
+### Tag
+
+- url `http://localhost:PORT/api/tags`
+- Uses
+  - Get
+    - `http://localhost:PORT/api/tags`
+    - `http://localhost:PORT/api/tags/id`
+  - Post
+    - JSON Body
+      - `{"tag_name": "Sample Tag"}`
+  - Put
+    - JSON Body
+    - `{"tag_name": "Sample Tag"}`
+  - Delete
+    - `http://localhost:PORT/api/tags/id`
 
 ---
 
