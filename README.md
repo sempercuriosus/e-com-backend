@@ -99,7 +99,7 @@ THEN I am able to successfully create, update, and delete data in my database
 
 - This is a test route to confirm that the server is up
 - url `http://localhost:PORT/api/ping/`
-- Returns "Therefore I must Pong"
+- Returns `Therefore I must Pong`
 
 ### Products
 
