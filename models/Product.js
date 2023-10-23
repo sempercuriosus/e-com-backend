@@ -20,11 +20,6 @@ Product.init(
       type: DataTypes.STRING
       , allowNull: false
       , defaultValue: ""
-      // what I am thinking here, this is a name, so there should not be special chars input; it is a product name after all. 
-      , validate: {
-        isAlphanumeric: true
-      }
-
     },
     price: {
       type: DataTypes.DECIMAL(8, 2)
@@ -37,7 +32,7 @@ Product.init(
     stock: {
       type: DataTypes.INTEGER
       , allowNull: false
-      , defaultValue: 0
+      , defaultValue: 10
       , validate: {
         isInt: true
       }

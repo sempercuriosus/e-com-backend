@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "node server.js",
-    "dev": "node --watch server.js",
-    "schema": "node db/schema.sql",
+    "watch": "node --watch server.js",
+    "dev": "npx nodemon server.js ",
     "seed": "node seeds/index.js"
   },
   "repository": {
