@@ -31,13 +31,13 @@ router.get('/', (req, res) => {
       // if the lookup was fine, but nothing was found then send this response and message to the user
       if (!categories) {
 
-        res.status(res_status).json({
+        return res.status(res_status).json({
           response_title: 'Find'
           , response_message: 'There are were no Categories found in the lookup.',
         });
       }
       // send the category data back 
-      res.status(res_status).json(categories);
+      return res.status(res_status).json(categories);
     })
     .catch((error) => {
       // log the error to the console
@@ -47,7 +47,7 @@ router.get('/', (req, res) => {
       res_message = 500;
 
       // send error response
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error thrown during the all Categories search'
       });
@@ -86,14 +86,14 @@ router.get('/:id', (req, res) => {
         res_status = 404;
 
         // send error response back
-        res.status(res_status).json({
+        return res.status(res_status).json({
           response_title: 'Find'
           , response_message: 'The category ID you searched for was not found.',
         });
       }
 
       // if the category WAS found return the data
-      res.status(200).json(category);
+      return res.status(200).json(category);
     });
 });
 
@@ -126,7 +126,7 @@ router.post('/', (req, res) => {
 
       // send response back
       res_message += ' ' + '\'' + newRecord.category_name + '\'';
-      res.status(res_status).json(
+      return res.status(res_status).json(
         {
           response_title: 'Insert'
           , response_message: res_message,
@@ -140,7 +140,7 @@ router.post('/', (req, res) => {
       res_status = 500;
 
       // send error response
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in the adding the new Category',
       });
@@ -190,7 +190,7 @@ router.put('/:id', (req, res) => {
           }
 
           // send response back
-          res.status(res_status).json({
+          return res.status(res_status).json({
             response_title: 'Update'
             , response_message: res_message,
           });
@@ -203,7 +203,7 @@ router.put('/:id', (req, res) => {
       res_status = 500;
 
       // send the erro response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in the Category update',
       });
@@ -242,7 +242,7 @@ router.delete('/:id', (req, res) => {
       }
 
       // send the response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Delete'
         , response_message: res_message
       });
@@ -256,7 +256,7 @@ router.delete('/:id', (req, res) => {
       res_status = 500;
 
       // send the error response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in deleting the record requested. ',
       });
