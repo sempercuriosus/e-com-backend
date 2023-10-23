@@ -32,13 +32,13 @@ router.get('/', (req, res) => {
       // if the lookup was fine, but nothing was found then send this response and message to the user
       if (!tag) {
 
-        res.status(res_status).json({
+        return res.status(res_status).json({
           response_title: 'Find'
           , response_message: 'There are were no tag found in the lookup.',
         });
       }
       // send the tag data back 
-      res.status(res_status).json(tag);
+      return res.status(res_status).json(tag);
     })
     .catch((error) => {
       // log the error to the console
@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
       res_message = 500;
 
       // send error response
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error thrown during the all tag search'
       });
@@ -88,14 +88,14 @@ router.get('/:id', (req, res) => {
         res_status = 404;
 
         // send error response back
-        res.status(res_status).json({
+        return res.status(res_status).json({
           response_title: 'Find'
           , response_message: 'The tag ID you searched for was not found.',
         });
       }
 
       // if the tag WAS found return the data
-      res.status(200).json(tag);
+      return res.status(200).json(tag);
     });
 });
 
@@ -127,7 +127,7 @@ router.post('/', (req, res) => {
 
       // send response back
       res_message += ' ' + '\'' + newRecord.tag_name + '\'';
-      res.status(res_status).json(
+      return res.status(res_status).json(
         {
           response_title: 'Insert'
           , response_message: res_message,
@@ -141,7 +141,7 @@ router.post('/', (req, res) => {
       res_status = 500;
 
       // send error response
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in the adding the new Tag',
       });
@@ -190,7 +190,7 @@ router.put('/:id', (req, res) => {
           }
 
           // send response back
-          res.status(res_status).json({
+          return res.status(res_status).json({
             response_title: 'Update'
             , response_message: res_message,
           });
@@ -203,7 +203,7 @@ router.put('/:id', (req, res) => {
       res_status = 500;
 
       // send the erro response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in the update requested',
       });
@@ -242,7 +242,7 @@ router.delete('/:id', (req, res) => {
       }
 
       // send the response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Delete'
         , response_message: res_message
       });
@@ -256,7 +256,7 @@ router.delete('/:id', (req, res) => {
       res_status = 500;
 
       // send the error response back
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_title: 'Error!'
         , response_message: 'There was an error in deleting the record requested. ',
       });

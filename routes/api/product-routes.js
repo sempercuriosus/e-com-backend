@@ -91,12 +91,12 @@ router.post('/', (req, res) => {
         return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
-      res.status(200).json(product);
+      return res.status(200).json(product);
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
-      res.status(400).json(err);
+      return res.status(400).json(err);
     });
 });
 
@@ -141,7 +141,7 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       // console.log(err);
-      res.status(400).json(err);
+      return res.status(400).json(err);
     });
 });
 
@@ -168,7 +168,7 @@ router.delete('/:id', (req, res) => {
         res_message = 'NO Record has been Deleted with the id: ' + req.params.id + '; check that the id exists.';
       }
 
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_message: res_message
       });
 
@@ -178,7 +178,7 @@ router.delete('/:id', (req, res) => {
       res_message = 'There was an error in deleting the record requested'
         + error;
 
-      res.status(res_status).json({
+      return res.status(res_status).json({
         response_message: res_message
       });
     });
